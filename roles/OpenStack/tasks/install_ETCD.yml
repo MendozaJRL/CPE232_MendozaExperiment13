@@ -1,0 +1,34 @@
+
+# Tasks for Installting ETCD for Ubuntu
+
+- name: Install ETCD for Ubuntu
+  apt:
+    name: etcd
+    state: present
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable ETCD for Ubuntu
+  systemd:
+    name: etcd
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+# Tasks for Installting ETCD for CentOS
+
+- name: Install ETCD for CentOS
+  yum:
+    name: etcd
+    state: present
+  become: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Enable ETCD for CentOS
+  systemd:
+    name: etcd
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "CentOS"

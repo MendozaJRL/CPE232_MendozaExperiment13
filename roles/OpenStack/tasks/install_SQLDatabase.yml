@@ -1,0 +1,37 @@
+
+# Tasks for Installing SQL Databse for Ubuntu
+
+- name: Install SQL Database for Ubuntu
+  apt:
+    name:
+      - mariadb-server
+    state: present
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable SQL Database for Ubuntu
+  systemd:
+    name: mysql
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+# Tasks for Installing SQL Databse for CentOS
+
+- name: Install SQL Database for CentOS
+  yum:
+    name:
+      - mariadb
+      - mariadb-server
+    state: present
+  become: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Enable SQL Database for CentOS
+  systemd:
+    name: mariadb
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "CentOS"

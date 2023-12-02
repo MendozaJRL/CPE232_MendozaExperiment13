@@ -1,0 +1,26 @@
+
+# Tasks for Installting OpenStack Packages for Ubuntu
+
+- name: Install OpenStack for Ubuntu
+  apt:
+    name:
+      - nova-compute
+      - python3-openstackclient
+    state: present
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+# Tasks for Installting OpenStack Packages for CentOS
+
+- name: Import Repository Key of OpenStack for CentOS
+  shell: rpm --import https://www.rdoproject.org/repos/rdo-release.rpm | sh
+  when: ansible_distribution == "CentOS"
+
+- name: Install OpenStack for CentOS
+  yum:
+    name:
+      - centos-release-openstack-train
+      - openstack-packstack
+    state: present
+  become: yes
+  when: ansible_distribution == "CentOS"

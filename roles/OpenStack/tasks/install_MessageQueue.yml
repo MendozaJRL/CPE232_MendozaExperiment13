@@ -1,0 +1,35 @@
+
+# Tasks for Installing Message Queue for Ubuntu
+
+- name: Install Message Queue for Ubuntu
+  apt:
+    name: rabbitmq-server
+    state: present
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable Message Queue Service for Ubuntu
+  systemd:
+    name: rabbitmq-server
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+# Tasks for Installing Message Queue for CentOS
+
+- name: Install Message Queue for CentOS
+  yum:
+    name: rabbitmq-server
+    state: present
+  become: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Enable Message Queue Service for CentOS
+  systemd:
+    name: rabbitmq-server
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "CentOS"
+

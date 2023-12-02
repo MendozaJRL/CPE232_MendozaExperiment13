@@ -1,0 +1,26 @@
+---
+# tasks file for roles/OpenStack
+
+- name: Execute install_NTP.yml
+  ansible.builtin.include_tasks:
+    file: install_NTP.yml
+
+- name: Execute install_OpenStack.yml
+  ansible.builtin.include_tasks:
+    file: install_OpenStackPackages.yml
+
+- name: Execute install_SQLDatabase.yml
+  ansible.builtin.include_tasks:
+    file: install_SQLDatabase.yml
+
+- name: Execute install_MessageQueue.yml
+  ansible.builtin.include_tasks:
+    file: install_MessageQueue.yml
+
+- name: Execute install_Memcached.yml
+  ansible.builtin.include_tasks:
+    file: install_Memcached.yml
+
+- name: Execute install_ETCD.yml
+  ansible.builtin.include_tasks:
+    file: install_ETCD.yml

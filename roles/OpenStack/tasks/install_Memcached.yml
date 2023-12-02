@@ -1,0 +1,23 @@
+
+# Tasks for Installing Memcached for Ubuntu
+
+- name: Install Memcached for Ubuntu
+  apt:
+    name:
+      - memcached
+      - python3-memcache
+    state: present
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+# Tasks for Installing Memcached for CentOS
+
+- name: Install Memcached for CentOS
+  yum:
+    name:
+      - memcached
+      - python-memcached
+    state: present
+  become: yes
+  when: ansible_distribution == "CentOS"
+

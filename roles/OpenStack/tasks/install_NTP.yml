@@ -1,0 +1,34 @@
+
+# Tasks for Installing NTP for Ubuntu
+
+- name: Install NTP for Ubuntu
+  apt:
+    name: chrony
+    state: present
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Enable NTP Service for Ubuntu
+  systemd:
+    name: chrony
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "Ubuntu"
+
+# Tasks for Installing NTP for CentOS
+
+- name: Install NTP for CentOS
+  yum:
+    name: chrony
+    state: present
+  become: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Enable NTP Service for CentOS
+  systemd:
+    name: chronyd
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_distribution == "CentOS"
